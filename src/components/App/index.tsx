@@ -33,7 +33,8 @@ function App() {
             <header>
                 <h1>Temperance</h1>
             </header>
-            <LinearCalendar />
+            <LinearCalendar
+                scaleInterval={{start: new Date(2021, 6, 15), end: new Date(2021, 9, 8)}} />
         </div>
     );
 }
