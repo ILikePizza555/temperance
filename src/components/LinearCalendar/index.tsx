@@ -4,25 +4,38 @@ import SegmentedBar from "./SegmentedBar";
 
 export interface LinearCalendarProps {
     scaleInterval: Interval,
-    scaleTickRate?: number
+    scaleTickCount?: number
 }
 
-function createTickDates(startDate: Date, endDate: Date, tickRate: number) {
-    const tickCount = Math.ceil(differenceInCalendarDays(startDate, endDate) / tickRate)
+function createTickDates(startDate: Date, tickCount: number, tickRate: number) {
     return Array.from({length: tickCount}, (_, i) => addDays(startDate, i * tickRate))
 }
 
+function createTicks(dates: Date[]) {
+    return dates.map((v, i) => {
+        const elementStyle = {
+            gridColumn: i + 1
+        }
+
+        return <time key={i}
+                     style={elementStyle}
+                     dateTime={formatISO(v, { representation: "date"})}>{format(v, "LLL d")}</time>
+    })
+}
 
 export default function LinearCalendar(props: LinearCalendarProps) {
-    const scaleTickRate = props.scaleTickRate || 7
-    const tickDates = createTickDates(toDate(props.scaleInterval.start), toDate(props.scaleInterval.end), scaleTickRate)
+    const tickCount = props.scaleTickCount || 14
+    const tickRate = Math.ceil(differenceInCalendarDays(props.scaleInterval.end, props.scaleInterval.start) / tickCount)
+    const tickDates = createTickDates(toDate(props.scaleInterval.start), tickCount, tickRate)
     
+    const gridStyle: React.CSSProperties = {
+        gridTemplateColumns: `repeat(${tickCount}, 1fr)`
+    }
+
     return (
-        <div className="LinearCalendar">
-            {tickDates.map((v, i) => <time 
-                key={i} 
-                style={{gridColumn: i + 1}} 
-                dateTime={formatISO(v, { representation: "date"})}>{format(v, "LLL d")}</time>)}
+        <div className="LinearCalendar"
+             style={gridStyle}>
+            {createTicks(tickDates)}
         </div>
     );
 }
