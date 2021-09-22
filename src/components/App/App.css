@@ -6,8 +6,3 @@
     max-width: 768px;
     margin: 0 auto;
 }
-
-.datum-block > h3 {
-    text-transform: uppercase;
-    margin: 0;
-}
