@@ -1,5 +1,7 @@
 import './App.css'
 
+import JobAppView, { JobAppData } from '../JobAppView';
+
 const ApplicationData = [
     {
         id: "32b1c6d3-93dc-44f4-9996-183eb8f1440e",
@@ -30,25 +32,15 @@ function App() {
             </header>
             <section className="JobAppList">
                 {
-                    ApplicationData.map(v => 
-                        <section key={v.id} className="JobAppView">
-                            <h2>{v.company_name}</h2>
-                            <div className="row">
-                                <div className="datum-block">
-                                    <h3>POSITION</h3>
-                                    <span>{v.position_title}</span>
-                                </div>
-                                <div className="datum-block">
-                                    <h3>LINK</h3>
-                                    <span><a href="{v.position_link}">{v.position_link}</a></span>
-                                </div>
-                                <div className="datum-block">
-                                    <h3>STATUS</h3>
-                                    <span>{v.status}</span>
-                                </div>
-                            </div>
-                        </section>
-                    )
+                    ApplicationData.map(v => {
+                        const data: JobAppData = {
+                            position: v.position_title,
+                            link: v.position_link,
+                            status: v.status
+                        }
+
+                        return <JobAppView heading={v.company_name} data={data}/>
+                    })
                 }
             </section>
         </div>
