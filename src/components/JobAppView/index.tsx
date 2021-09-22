@@ -5,6 +5,8 @@
 
 import React from "react"
 
+import "./JobAppView.css"
+
 export interface JobAppData {
     position: string
     link?: string
@@ -27,23 +29,23 @@ export default function JobAppView(props: JobAppViewProps) {
     const DatumHeading = `h${datumHeadingLevel}` as keyof JSX.IntrinsicElements
 
     return <section className="JobAppView">
-        <TitleHeading>{props.heading}</TitleHeading>
+        <TitleHeading className="JobAppView-heading">{props.heading}</TitleHeading>
         <div className="row">
             <div className="datum"> 
-                <DatumHeading>Position</DatumHeading>
+                <DatumHeading className="datum-heading">Position</DatumHeading>
                 {props.data.position}
             </div>
             { 
                 props.data.link !== undefined && 
                 <div className="datum">
-                    <DatumHeading>Link</DatumHeading>
+                    <DatumHeading className="datum-heading">Link</DatumHeading>
                     <a href={props.data.link}>{props.data.link}</a>
                 </div>
             }
             {
                 props.data.status !== undefined &&
                 <div className="datum">
-                    <DatumHeading>Status</DatumHeading>
+                    <DatumHeading className="datum-heading">Status</DatumHeading>
                     {props.data.status}
                 </div>
             }

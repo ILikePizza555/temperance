@@ -7,7 +7,7 @@ const ApplicationData = [
         id: "32b1c6d3-93dc-44f4-9996-183eb8f1440e",
         company_name: "Dunder Mifflin",
         position_title: "Sales associate",
-        position_link: "https://example.com",
+        position_link: "https://www.example.com",
         status: "Final Interview"
     },
     {

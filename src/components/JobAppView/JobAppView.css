@@ -1,0 +1,23 @@
+.JobAppView {
+    margin-bottom: 4em;
+}
+
+.JobAppView-heading {
+    margin: 0 0 0.5em 0;
+}
+
+.datum {
+    width: 30ch;
+    margin: 0 0.75em;
+    overflow-x: hidden;
+}
+
+.datum:first-child {
+    margin-left: 0;
+}
+
+.datum-heading {
+    margin: 0;
+    font-size: 16px;
+    text-transform: uppercase;
+}
